@@ -1,5 +1,6 @@
 var React = require('react');
 var Todo = require('Todo');
+
 var TodoList = React.createClass({
   render: function () {
     var {todos} = this.props;
@@ -10,7 +11,6 @@ var TodoList = React.createClass({
           )
         })
     };
-    
     return (
       <div>
         {renderTodos()}
