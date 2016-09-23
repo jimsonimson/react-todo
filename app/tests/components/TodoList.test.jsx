@@ -21,7 +21,8 @@ describe('TodoList', () => {
       text: 'Check email'
     }];
     var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
-    var todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, Todo);
+    var todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, Todo); 
+    // "scryRenderedComponentsWithType" checks how many components are rendered in todoList. The first arg is the rendered component it checks, the second arg is class of the item we want to observe
     
     expect(todosComponents.length).toBe(todos.length);
   })
