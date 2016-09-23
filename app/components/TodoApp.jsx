@@ -35,7 +35,8 @@ var TodoApp = React.createClass({
     this.setState({
       showCompleted: showCompleted,
       searchText: searchText.toLowerCase() // we set the search value to lowercase so we can also find any lowercased words
-    })
+    });
+    console.log("show completed: " + showCompleted + ' | ' + "search for: " + searchText)
   },
   render: function () {
     var {todos} = this.state;
