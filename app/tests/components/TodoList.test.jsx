@@ -25,5 +25,13 @@ describe('TodoList', () => {
     // "scryRenderedComponentsWithType" checks how many components are rendered in todoList. The first arg is the rendered component it checks, the second arg is class of the item we want to observe
     
     expect(todosComponents.length).toBe(todos.length);
+  });
+  
+  it('should render empty message if no todos', ()=> {
+    var todos = [];
+    var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
+    var $el = $(ReactDOM.findDOMNode(todoList));
+    
+    expect($el.find('.container__message').length).toBe(1);
   })
 });
