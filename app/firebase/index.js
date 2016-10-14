@@ -2,17 +2,16 @@ import firebase from 'firebase';
 
 try {
   var config = {
-      apiKey: "AIzaSyCmPy2TwY0l9qtIOBsjc6YjIUuTMAFN1Ao",
-      authDomain: "jimson-todo.firebaseapp.com",
-      databaseURL: "https://jimson-todo.firebaseio.com",
-      storageBucket: "jimson-todo.appspot.com",
-      messagingSenderId: "344193698703"
-    };
-    
+    apiKey: "AIzaSyD_9fsTH8TiSdhYGD_4mzGbzwDxA7vW5w0",
+    authDomain: "mead-todo-app-23821.firebaseapp.com",
+    databaseURL: "https://mead-todo-app-23821.firebaseio.com",
+    storageBucket: "mead-todo-app-23821.appspot.com",
+  };
+
   firebase.initializeApp(config);
 } catch (e) {
-  
+
 }
-  
-  export var firebaseRef = firebase.database().ref();
-  export default firebase;
+
+export var firebaseRef = firebase.database().ref();
+export default firebase;
