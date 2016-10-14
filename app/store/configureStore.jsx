@@ -9,12 +9,11 @@ export var configure = (initialState = {}) => {
     showCompleted: showCompletedReducer,
     todos: todosReducer
   });
-  
+
   var store = redux.createStore(reducer, initialState, redux.compose(
     redux.applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
-  
-  return store;
-}
 
+  return store;
+};

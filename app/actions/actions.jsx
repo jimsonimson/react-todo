@@ -9,6 +9,12 @@ export var setSearchText = (searchText) => {
   };
 };
 
+export var toggleShowCompleted = () => {
+  return {
+    type: 'TOGGLE_SHOW_COMPLETED'
+  };
+};
+
 export var addTodo = (todo) => {
   return {
     type: 'ADD_TODO',
@@ -25,7 +31,7 @@ export var startAddTodo = (text) => {
       completedAt: null
     };
     var todoRef = firebaseRef.child('todos').push(todo);
-    
+
     return todoRef.then(() => {
       dispatch(addTodo({
         ...todo,
@@ -39,23 +45,35 @@ export var addTodos = (todos) => {
   return {
     type: 'ADD_TODOS',
     todos
-  }
+  };
 };
 
-//toggleShowCompleted TOGGLE_SHOW_COMPLETED 
-export var toggleShowCompleted = () => {
-  return {
-    type: 'TOGGLE_SHOW_COMPLETED'
-  }
+export var startAddTodos = () => {
+  return (dispatch, getState) => {
+    var todosRef = firebaseRef.child('todos');
+
+    return todosRef.once('value').then((snapshot) => {
+      var todos = snapshot.val() || {};
+      var parsedTodos = [];
+
+      Object.keys(todos).forEach((todoId) => {
+        parsedTodos.push({
+          id: todoId,
+          ...todos[todoId]
+        });
+      });
+
+      dispatch(addTodos(parsedTodos));
+    });
+  };
 };
 
-//toggleTodo(id) toggleTodo
 export var updateTodo = (id, updates) => {
   return {
     type: 'UPDATE_TODO',
     id,
     updates
-  }
+  };
 };
 
 export var startToggleTodo = (id, completed) => {
@@ -65,8 +83,8 @@ export var startToggleTodo = (id, completed) => {
       completed,
       completedAt: completed ? moment().unix() : null
     };
-    
-    return todoRef.update(updates).then(()=>{
+
+    return todoRef.update(updates).then(() => {
       dispatch(updateTodo(id, updates));
     });
   };
